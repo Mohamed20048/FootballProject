@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Football Team & Match Management</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Football Team & Match Management</h1>
+    <div class="role">
+      <label for="role">Role:</label>
+      <select id="role">
+        <option>spectator</option>
+        <option>coach</option>
+        <option>referee</option>
+        <option>admin</option>
+      </select>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button data-tab="dashboard" class="active">Dashboard</button>
+    <button data-tab="teams">Teams</button>
+    <button data-tab="players">Players</button>
+    <button data-tab="matches">Matches</button>
+    <button data-tab="live">Live</button>
+    <button data-tab="standings">Standings</button>
+  </nav>
+
+  <main>
+    <section id="dashboard" class="tab active">
+      <h2>Quick Actions</h2>
+      <p>Use the tabs above to manage teams, players, and matches. Select a role to enable the right actions.</p>
+      <ul>
+        <li><strong>Admin</strong>: create/edit teams, players, competitions, matches.</li>
+        <li><strong>Coach</strong>: manage team and players.</li>
+        <li><strong>Referee</strong>: set match status, add events, finalize results.</li>
+        <li><strong>Spectator</strong>: view fixtures, live scores, standings.</li>
+      </ul>
+    </section>
+
+    <section id="teams" class="tab">
+      <h2>Teams</h2>
+      <form id="teamForm" class="card">
+        <input name="name" placeholder="Team name" required />
+        <input name="coach_name" placeholder="Coach name" />
+        <input name="founded_year" placeholder="Founded year" type="number" />
+        <input name="stadium" placeholder="Stadium" />
+        <button type="submit">Create Team</button>
+      </form>
+      <table id="teamsTable" class="list"></table>
+    </section>
+
+    <section id="players" class="tab">
+      <h2>Players</h2>
+      <form id="playerForm" class="card">
+        <input name="full_name" placeholder="Full name" required />
+        <select name="position">
+          <option>GK</option>
+          <option>DF</option>
+          <option>MF</option>
+          <option>FW</option>
+        </select>
+        <input name="age" type="number" placeholder="Age" required />
+        <input name="nationality" placeholder="Nationality" />
+        <select name="team_id" id="playerTeam"></select>
+        <button type="submit">Create Player</button>
+      </form>
+      <table id="playersTable" class="list"></table>
+    </section>
+
+    <section id="matches" class="tab">
+      <h2>Matches</h2>
+      <form id="matchForm" class="card">
+        <select name="competition_id" id="competition"></select>
+        <select name="home_team_id" id="homeTeam"></select>
+        <select name="away_team_id" id="awayTeam"></select>
+        <input name="date_time" type="datetime-local" required />
+        <input name="venue" placeholder="Venue" />
+        <input name="referee" placeholder="Referee" />
+        <button type="submit">Schedule Match</button>
+      </form>
+      <table id="matchesTable" class="list"></table>
+    </section>
+
+    <section id="live" class="tab">
+      <h2>Live Scores</h2>
+      <div id="liveList" class="cards"></div>
+    </section>
+
+    <section id="standings" class="tab">
+      <h2>Standings</h2>
+      <div class="row">
+        <select id="standingsCompetition"></select>
+        <button id="loadStandings">Load Standings</button>
+      </div>
+      <table id="standingsTable" class="list"></table>
+    </section>
+  </main>
+
+  <footer>© Football Management Starter</footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
